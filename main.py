@@ -51,12 +51,12 @@ PDiskBot = Client(
 )
 
 if (not Configs.AUTH_CHATS) or (Configs.AUTH_CHATS == [0]):
-    filters_markup = filters.command("request", prefixes=["#", "/"]) & ~filters.edited
+    filters_markup = filters.text) & ~filters.edited
 else:
-    filters_markup = filters.command("request", prefixes=["#", "/"]) & filters.chat(Configs.AUTH_CHATS) & ~filters.edited
+    filters_markup = filters.text) & filters.chat(Configs.AUTH_CHATS) & ~filters.edited
 
 
-@PDiskBot.on_message(filters.command("start") & ~filters.edited)
+@PDiskBot.on_message(filters.text("start") & ~filters.edited)
 async def start_handler(_, m: Message):
     await m.reply_text("Hi, I am Alive!\n\nSearch using /request command.", quote=True)
 
