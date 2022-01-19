@@ -51,9 +51,7 @@ PDiskBot = Client(
 )
 
 if (not Configs.AUTH_CHATS) or (Configs.AUTH_CHATS == [0]):
-    filters_markup = filters.text) & ~filters.edited
-else:
-    filters_markup = filters.text) & filters.chat(Configs.AUTH_CHATS) & ~filters.edited
+    filters_markup = filters.text)
 
 
 @PDiskBot.on_message(filters.text("start") & ~filters.edited)
