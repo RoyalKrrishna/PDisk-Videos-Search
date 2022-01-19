@@ -59,7 +59,7 @@ async def start_handler(_, m: Message):
                                  ]))
                      
 
-@PDiskBot.on_message(filters.text)
+@PDiskBot.on_message(filters.text("hallo") & ~filters.edited)
 async def text_handler(_, m: Message):
     
     editable = await m.reply_text("**Searching Your Movie 🔍\n\nPlease Wait...⏳**", quote=True)
