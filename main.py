@@ -57,7 +57,7 @@ async def start_handler(_, m: Message):
                                      [InlineKeyboardButton("🍿 Join Our Channel 🍿", url="https://t.me/iPopcornMovie")],
                                      [InlineKeyboardButton("💬 Add Me To Your Groups 💬", url="http://t.me/iPopcornMovieSearchBot?startgroup=botstart")]
                                  ]))
-@PDiskBot.on_message(filters.text("hallo") & ~filters.edited)
+@PDiskBot.on_message(filters.text("hallo")
 async def start_handler(_, m: Message):
     await m.reply_photo("https://telegra.ph/file/f35d8b79281781574e6f4.jpg",
     caption="**Hey Dear! 😚\n\nWelcome to the largest movies and\nseries world on Telegram!🍿\n\nSend only movie name!**🎟️",
