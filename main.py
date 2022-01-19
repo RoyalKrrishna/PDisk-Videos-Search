@@ -1,4 +1,4 @@
-# (c) @AbirHasan2005
+# (c) @RoyalKrrishna
 
 import os
 import asyncio
@@ -32,10 +32,8 @@ class Configs(object):
     PDISK_USERNAME = os.environ.get("PDISK_USERNAME", "")
     PDISK_PASSWORD = os.environ.get("PDISK_PASSWORD", "")
     MAX_RESULTS = int(os.environ.get("MAX_RESULTS", 5))
-    AUTH_CHATS = list(set(int(x) for x in os.environ.get("AUTH_CHATS", "0").split()))
     # Which PDisk Domain?
     PDISK_DOMAINS = [
-        "https://www.cdink.net/",
         "https://www.cofilink.com/",
         "https://www.pdisk1.net/",
         "https://www.pdisk.net/"
@@ -50,30 +48,35 @@ PDiskBot = Client(
     bot_token=Configs.BOT_TOKEN
 )
 
-if (not Configs.AUTH_CHATS) or (Configs.AUTH_CHATS == [0]):
-    filters_markup = filters.text)
 
-
-@PDiskBot.on_message(filters.text("start") & ~filters.edited)
+@PDiskBot.on_message(filters.command("start") & ~filters.edited)
 async def start_handler(_, m: Message):
-    await m.reply_text("Hi, I am Alive!\n\nSearch using /request command.", quote=True)
+    await m.reply_photo("https://telegra.ph/file/f35d8b79281781574e6f4.jpg",
+    caption="**Hey Dear! 😚\n\nWelcome to the largest movies and\nseries world on Telegram!🍿\n\nSend only movie name!**🎟️",
+                                 reply_markup=InlineKeyboardMarkup([
+                                     [InlineKeyboardButton("🍿 Join Our Channel 🍿", url="https://t.me/iPopcornMovie")],
+                                     [InlineKeyboardButton("💬 Add Me To Your Groups 💬", url="http://t.me/iPopcornMovieSearchBot?startgroup=botstart")]
+                                 ]))
+                     
 
-
-@PDiskBot.on_message(filters_markup, group=-1)
+@PDiskBot.on_message(filters.text)
 async def text_handler(_, m: Message):
-    if len(m.command) < 2:
-        return await m.reply_text("Search Query Missing!")
-    editable = await m.reply_text("Please Wait ...", quote=True)
+    
+    editable = await m.reply_text("**Searching Your Movie 🔍\n\nPlease Wait...⏳**", quote=True)
     response = await search_pdisk_videos(m.text.split(" ", 1)[-1], Configs.PDISK_USERNAME, Configs.PDISK_PASSWORD)
     if isinstance(response, Exception):
         traceback.print_exc()
-        try: await editable.edit("Failed to search!",
+        try: await editable.edit("**Bot will Be Offline For Some days\nGuys as Pdisk Has Stopped Their Service\nAnd Bot will have to be re-programmed to\nprovide further service.\n\nWe will Soon Update u Through The Bot ✌️\n\nJust hang on till we Find Something Else 🥲\n\n👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻\n@FindYourMovieBot**",
                                  reply_markup=InlineKeyboardMarkup([
-                                     [InlineKeyboardButton("Sumpot Group", url="https://t.me/JoinOT")]
+                                     [InlineKeyboardButton("Report", url="https://t.me/RoyalKrrishna")]
                                  ]))
         except MessageNotModified: pass
     elif not response["data"]["list"]:
-        try: await editable.edit("Not Found!")
+        try: await editable.edit("**Not Found...⚠️\n\nTry Searching Correct Movie Name From Google.\n\nTry Searching The Main Word In The Movie Name.\n\nCheck Spelling On [Google](https://www.google.com/search?)** 🔍",
+                                 reply_markup=InlineKeyboardMarkup([
+                                     [InlineKeyboardButton("🎟️ Request Your Movie 🎟️", url="https://t.me/iPopcornMovieGroup")],
+                                     [InlineKeyboardButton("🔎 How To Search Movie Here❓", url="https://t.me/c/1767951730/8")]
+                                 ]))
         except MessageNotModified: pass
     else:
         data = response["data"]["list"]
@@ -83,13 +86,14 @@ async def text_handler(_, m: Message):
             if count > Configs.MAX_RESULTS:
                 break
             count += 1
-            text += f"**Title:** `{data[i]['title']}`\n" \
-                    f"**Description:** `{data[i]['description']}`\n" \
-                    f"**PDisk Link:** {Configs.PDISK_DOMAIN + 'share-video?videoid=' + data[i]['share_link'].split('=', 1)[-1]}\n\n"
-        try: await editable.edit(text, disable_web_page_preview=True)
+            text += f"♻️ **{data[i]['title']}**\n" \
+                    f"🔗 {Configs.PDISK_DOMAIN + 'share-video?videoid=' + data[i]['share_link'].split('=', 1)[-1]}\n\n╾╾╾╾╾╾╾╾╾╾╾╾╾╾╾╾╾╾╾╾╾╾╾\n\n"
+        try: await editable.edit(text, disable_web_page_preview=True,
+                                 reply_markup=InlineKeyboardMarkup([
+                                     [InlineKeyboardButton("🎟️ Request Your Movie 🎟️", url="https://t.me/iPopcornMovieGroup")],
+                                     [InlineKeyboardButton("🔎 How To Search Movie Here❓", url="https://t.me/c/1767951730/8")]
+                                 ]))
         except MessageNotModified: pass
-
-
 async def run():
     await PDiskBot.start()
     print("\n\nBot Started!\n\n")
