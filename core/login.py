@@ -7,7 +7,7 @@ from selenium.common.exceptions import (
 )
 
 
-async def kdisk_login(username: str, password: str):
+async def xdisk_login(username: str, password: str):
     print("Bot on Standby ...")
     login_url = "https://www.xdisk.in/login?type=login"
     get_id_page_url = "https://www.xdisk.in/withdraw"
@@ -18,7 +18,7 @@ async def kdisk_login(username: str, password: str):
     options.add_argument("--disable-gpu")
     options.add_argument("--disable-infobars")
     driver = webdriver.Chrome(options=options)
-    print("Trying to Login to PDisk Account ...")
+    print("Trying to Login to XDisk Account ...")
     driver.get(login_url)
     print("Adding Username in Box ...")
     driver.find_element_by_xpath("//input[@placeholder='Username/Email']").send_keys(username)
