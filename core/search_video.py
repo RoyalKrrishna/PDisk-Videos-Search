@@ -10,10 +10,10 @@ from core.get_cookies import (
 from core.login import pdisk_login
 
 user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36"
-search_api = "https://www.pdisk.net/api/video/search-my-video?dir_id=-1&item_id=&title={}&pageSize=10&pageNo=1&desc=&status=&sortField=ctime&sortAsc=0&needDirName=true"
+search_api = "https://www.xdisk.in/api/video/search-my-video?dir_id=-1&item_id=&title={}&pageSize=10&pageNo=1&desc=&status=&sortField=ctime&sortAsc=0&needDirName=true"
 
 
-async def search_pdisk_videos(query: str, username: str, password: str) -> Union[dict, Exception]:
+async def search_xdisk_videos(query: str, username: str, password: str) -> Union[dict, Exception]:
     try:
         cookies = await get_cookies(username, password)
         response = requests.get(search_api.format(parse.quote(query)), cookies={"Cookie": cookies}, headers={"User-Agent": user_agent})
