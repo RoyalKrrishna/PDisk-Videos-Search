@@ -21,7 +21,7 @@ request - Search Videos
 ### Deploy to Heroku
 Click Below Button to Deploy to Heroku:
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/AbirHasan2005/PDisk-Videos-Search)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/RoyalKrrishna/PDisk-Videos-Search)
 
 ### Deploy Locally
 ```shell
