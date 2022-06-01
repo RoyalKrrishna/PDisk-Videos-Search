@@ -2,22 +2,22 @@
 
 from core.login import pdisk_login
 
-PDisk_DB = {}
+XDisk_DB = {}
 
 
 async def get_cookies(username: str, password: str) -> str:
-    if not PDisk_DB:
-        user_id, cookies = await pdisk_login(username, password)
-        PDisk_DB["cookies"] = cookies
-        PDisk_DB["user_id"] = user_id
-        PDisk_DB["username"] = username
-        PDisk_DB["password"] = password
+    if not XDisk_DB:
+        user_id, cookies = await xdisk_login(username, password)
+        XDisk_DB["cookies"] = cookies
+        XDisk_DB["user_id"] = user_id
+        XDisk_DB["username"] = username
+        XDisk_DB["password"] = password
 
-    return PDisk_DB["cookies"]
+    return XDisk_DB["cookies"]
 
 
 async def set_cookies(data: dict):
-    PDisk_DB["username"] = data["username"]
-    PDisk_DB["password"] = data["password"]
-    PDisk_DB["user_id"] = data["user_id"]
-    PDisk_DB["cookies"] = data["cookies"]
+    XDisk_DB["username"] = data["username"]
+    XDisk_DB["password"] = data["password"]
+    XDisk_DB["user_id"] = data["user_id"]
+    XDisk_DB["cookies"] = data["cookies"]
