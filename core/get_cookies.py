@@ -1,6 +1,6 @@
 # (c) @AbirHasan2005
 
-from core.login import pdisk_login
+from core.login import xdisk_login
 
 XDisk_DB = {}
 
