@@ -1,6 +1,6 @@
 {
-    "name": "PDisk-Videos-Search",
-    "description": "A Telegram bot for searching videos in your PDisk account by @AbirHasan2005.",
+    "name": "XDisk-Videos-Search",
+    "description": "A Telegram bot for searching videos in your XDisk account by @AbirHasan2005.",
     "keywords": [
         "telegram",
         "bot",
@@ -25,12 +25,12 @@
             "description": "Get from https://t.me/BotFather",
             "required": true
         },
-        "PDISK_USERNAME": {
-            "description": "Your PDisk Account Username/Email",
+        "XDISK_USERNAME": {
+            "description": "Your XDisk Account Username/Email",
             "required": true
         },
-        "PDISK_PASSWORD": {
-            "description": "Your PDisk Account Password",
+        "XDISK_PASSWORD": {
+            "description": "Your XDisk Account Password",
             "required": true
         },
         "MAX_RESULTS": {
@@ -41,10 +41,10 @@
             "description": "Allow only authorized users to use the request command. Put user IDs or Chat IDs. For multiple IDs separate using space.",
             "required": false
         },
-        "PDISK_DOMAIN": {
+        "XDISK_DOMAIN": {
             "description": "PDisk Default Domain",
             "required": false,
-            "value": "https://www.pdisk.net/"
+            "value": "https://www.Xdisk.in/"
         }
     },
     "stack": "heroku-20",
