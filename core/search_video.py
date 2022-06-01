@@ -7,7 +7,7 @@ from core.get_cookies import (
     get_cookies,
     set_cookies
 )
-from core.login import pdisk_login
+from core.login import xdisk_login
 
 user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36"
 search_api = "https://www.xdisk.in/api/video/search-my-video?dir_id=-1&item_id=&title={}&pageSize=10&pageNo=1&desc=&status=&sortField=ctime&sortAsc=0&needDirName=true"
@@ -19,14 +19,14 @@ async def search_xdisk_videos(query: str, username: str, password: str) -> Union
         response = requests.get(search_api.format(parse.quote(query)), cookies={"Cookie": cookies}, headers={"User-Agent": user_agent})
         data = response.json()
         if data["msg"] == "Please login again":
-            user_id, cookies = await pdisk_login(username, password)
+            user_id, cookies = await xdisk_login(username, password)
             await set_cookies({
                 "username": username,
                 "password": password,
                 "user_id": user_id,
                 "cookies": cookies
             })
-            return await search_pdisk_videos(query, username, password)
+            return await search_xdisk_videos(query, username, password)
         else:
             return data
     except Exception as error:
